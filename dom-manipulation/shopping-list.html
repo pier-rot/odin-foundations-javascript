@@ -1,37 +1,55 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping list example</title>
-    <style>
-      li {
-        margin-bottom: 10px;
-      }
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Shopping list example</title>
+		<style>
+			li {
+				margin-bottom: 10px;
+			}
 
-      li button {
-        font-size: 12px;
-        margin-left: 20px;
-        color: #666;
-      }
-    </style>
-  </head>
-  <body>
+			li button {
+				font-size: 12px;
+				margin-left: 20px;
+				color: #666;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>My shopping list</h1>
 
-    <h1>My shopping list</h1>
+		<div>
+			<label for="item">Enter a new item:</label>
+			<input type="text" name="item" id="item" />
+			<button>Add item</button>
+		</div>
 
-    <div>
-      <label for="item">Enter a new item:</label>
-      <input type="text" name="item" id="item">
-      <button>Add item</button>
-    </div>
+		<ul></ul>
 
-    <ul>
+		<script>
+			let ul = document.querySelector("ul");
+			let input = document.querySelector("input");
+			let button = document.querySelector("button");
 
-    </ul>
+			function buttonResponse() {
+				let inputValue = input.value;
+				input.value = "";
+				let li = document.createElement("li");
+				let span = document.createElement("space");
+				let deleteButton = document.createElement("button");
+				li.appendChild(span);
+				li.appendChild(deleteButton);
+				span.textContent = inputValue;
+				deleteButton.textContent = "Delete";
+				ul.appendChild(li);
+				deleteButton.addEventListener("click", () => {
+					ul.removeChild(deleteButton.parentNode);
+				});
+			}
 
-    <script>
-
-    </script>
-  </body>
+			button.addEventListener("click", buttonResponse);
+			input.focus();
+		</script>
+	</body>
 </html>
